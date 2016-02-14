@@ -7,7 +7,7 @@ public function autocomplete($filter_name) {
 		{
 			
 			$this->load->model('billpayment/payment');
-			$biilist=$this->model_billpayment_payment->biilist($filter_name);
+			$biilist=$this->model_company_list->company_list($filter_name);
 			$results=$biilist;
 
 			foreach ($results as $result) {
