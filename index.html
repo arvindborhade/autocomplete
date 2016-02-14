@@ -1,0 +1,24 @@
+ 
+ 
+<input type="text" class="form-control" id="filter_name" name="filter_name" placeholder="Company Name">
+
+<script>
+$('input[name=\'filter_name\']').autocomplete({
+			'source': function(request, response) {
+				$.ajax({
+					url: 'index.php?route=sale/customer/autocomplete&filter_name=' +  encodeURIComponent(request),
+					dataType: 'json',			
+					success: function(json) {
+						response($.map(json, function(item) {
+							return {
+								label: item['name'],
+								value: item['customer_id']
+							}
+						}));
+					}
+				});
+			},
+			'select': function(item) {
+				$('input[name=\'filter_name\']').val(item['label']);
+			}	});
+  </script>
